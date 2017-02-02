@@ -21,6 +21,10 @@ class PhotoViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        //tableView.rowHeight = 240
 
         // Do any additional setup after loading the view.
         let url = URL(string:"https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=\(CLIENT_ID)")
@@ -48,6 +52,7 @@ class PhotoViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         self.posts = responseFieldDictionary["posts"] as! [NSDictionary]
                     }
                 }
+                self.tableView.reloadData()
         });
         task.resume()
         
@@ -64,11 +69,20 @@ class PhotoViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
         
-        let post = posts[indexPath.row] as! NSDictionary
-        let imageURLString = (((post["photos"] as! NSDictionary)["alt_sizes"] as! [NSDictionary])[1] as! NSDictionary)["url"] as! String
-        let imageURL = NSURL(string: imageURLString)
+        let post = posts[indexPath.row]
         
-        cell.photoView.setImageWith(imageURL as! URL)
+        if let photos = post.value(forKeyPath: "photos") as? [NSDictionary] {
+            let imageURLString = photos[0].value(forKeyPath: "original_size.url") as? String
+            let imageURL = URL(string: imageURLString!)
+            cell.photoView.setImageWith(imageURL!)
+        }
+        
+        
+        
+        //let imageURLString = (((post["photos"] as! NSDictionary)["alt_sizes"] as! [NSDictionary])[1] )["url"] as! String
+        //let imageURL = URL(string: imageURLString)!
+        
+        
         
         return cell
     }
