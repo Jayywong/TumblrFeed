@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import AFNetworking
 
-class PhotoViewController: UIViewController {
+class PhotoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     
-    @IBOutlet weak var tableView: UITableViewCell!
-    @IBOutlet weak var tumblrPhotoView: UIView!
+   
+    @IBOutlet weak var tableView: UITableView!
     
     let CLIENT_ID = "Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV"
     var posts: [NSDictionary] = []
@@ -44,7 +45,7 @@ class PhotoViewController: UIViewController {
                         
                         // This is where you will store the returned array of posts in your posts property
                         // self.feeds = responseFieldDictionary["posts"] as! [NSDictionary]
-                        self.posts = responseFieldDictionary["posts"] as! NSDictionary
+                        self.posts = responseFieldDictionary["posts"] as! [NSDictionary]
                     }
                 }
         });
@@ -56,7 +57,21 @@ class PhotoViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return posts.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
+        
+        let post = posts[indexPath.row] as! NSDictionary
+        let imageURLString = (((post["photos"] as! NSDictionary)["alt_sizes"] as! [NSDictionary])[1] as! NSDictionary)["url"] as! String
+        let imageURL = NSURL(string: imageURLString)
+        
+        cell.photoView.setImageWith(imageURL as! URL)
+        
+        return cell
+    }
 
     /*
     // MARK: - Navigation

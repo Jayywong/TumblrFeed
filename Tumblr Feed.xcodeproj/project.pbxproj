@@ -13,6 +13,7 @@
 		962A95DA1E42D40600950EDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 962A95D91E42D40600950EDE /* Assets.xcassets */; };
 		962A95DD1E42D40600950EDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 962A95DB1E42D40600950EDE /* LaunchScreen.storyboard */; };
 		962A95E51E42D5C500950EDE /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A95E41E42D5C500950EDE /* PhotoViewController.swift */; };
+		962A95E71E42DAAA00950EDE /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A95E61E42DAAA00950EDE /* PhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		962A95DC1E42D40600950EDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		962A95DE1E42D40600950EDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		962A95E41E42D5C500950EDE /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		962A95E61E42DAAA00950EDE /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				962A95DB1E42D40600950EDE /* LaunchScreen.storyboard */,
 				962A95DE1E42D40600950EDE /* Info.plist */,
 				962A95E41E42D5C500950EDE /* PhotoViewController.swift */,
+				962A95E61E42DAAA00950EDE /* PhotoCell.swift */,
 			);
 			path = "Tumblr Feed";
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				962A95D31E42D40600950EDE /* AppDelegate.swift in Sources */,
+				962A95E71E42DAAA00950EDE /* PhotoCell.swift in Sources */,
 				962A95E51E42D5C500950EDE /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
